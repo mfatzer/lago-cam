@@ -3,19 +3,21 @@ from urllib import request
 from datetime import datetime, time, date, timedelta
 import time as timer 
 import os
-import cv2
+#import cv2
 import numpy as np
-import glob
+#import glob
 
 
-imageDir = "./images/"
-tempImageDir = "./tempImages/"
+# Ram-disk on "mnt/ramdisk" is needed (1TB)
+
+imageDir = "/mnt/ramdisk/images/"
+tempImageDir = "/mnt/ramdisk/tempImages/"
 fileType = ".jpg"
 url = "http://lago-mio.dyndns.org/cgi-bin/api.cgi?cmd=Snap&channel=0&rs=wuuPhkmUCeI9WG7C&user=surfer&password=lago-mio"
 bottomFilterHeight = 720
 
 snapshotStartTime = time(7, 0)
-snapshotEndTime = time(21, 0)
+snapshotEndTime = time(22, 0)
 snapshotInterval = timedelta(minutes=1)
 
 
@@ -97,6 +99,12 @@ def makeVideoOutOfDir(pathName, fileName):
 
 def main():
     nextSnapShotTimeStamp = findStartTimeStamp(datetime.now().time())
+    if (not os.path.isdir(imageDir)):
+        os.mkdir(imageDir)
+
+    if (not os.path.isdir(tempImageDir)):
+        os.mkdir(tempImageDir)
+
     while(True):
         currentTime = datetime.now()
 
@@ -104,7 +112,7 @@ def main():
             fileName = captureAndSaveCamImage()
             nextSnapShotTimeStamp = findNextTimeStamp(nextSnapShotTimeStamp)
             print("Image saved as: " + fileName)
-            makeVideoOutOfDir(createPathNameForTime(currentTime), createDirNameForTime(currentTime))
+            #makeVideoOutOfDir(createPathNameForTime(currentTime), createDirNameForTime(currentTime))
 
         else:
             timer.sleep(1)

@@ -7,9 +7,11 @@ from PIL import Image, ImageFilter
 from urllib import request 
 
 
+# Ram-disk is needed on "/mnt/ramdisk"
+
 URL = "http://lago-mio.dyndns.org/cgi-bin/api.cgi?cmd=Snap&channel=0&rs=wuuPhkmUCeI9WG7C&user=surfer&password=lago-mio"
 BOTTOM_FILTER_HEIGHT = 720
-IMAGE_NAME = "image.jpeg"
+IMAGE_NAME = "/mnt/ramdisk/image.jpeg"
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -33,7 +35,7 @@ def getProcessedCamImage(imageName):
 @app.route("/get_image", methods=["GET"])
 def getCamImage():
     img = getProcessedCamImage(IMAGE_NAME)
-    return send_file("..\\" + IMAGE_NAME, mimetype='image/jpeg')
+    return send_file(IMAGE_NAME, mimetype='image/jpeg')
 
 
 if __name__ == "__main__":
