@@ -1,0 +1,5 @@
+UsedPorts
+=========
+
+VNC-Server: 5900
+CamServer: 8080
