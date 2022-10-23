@@ -1,16 +1,12 @@
 from PIL import Image, ImageFilter
 from urllib import request
-
-
-CAM_DOMAIN = "http://lago-mio.dyndns.org/"
-CAM_SNAPSHOT_URI = "cgi-bin/api.cgi?cmd=Snap&channel=0&rs=wuuPhkmUCeI9WG7C&user=surfer&password=lago-mio"
-SNAPSHOT_URL = CAM_DOMAIN + CAM_SNAPSHOT_URI
+import constant
 
 BLUR_FILTER_HEIGHT_BOTTOM = 720
 
 
 def get_processed_cam_image(image_name):
-    request.urlretrieve(SNAPSHOT_URL, image_name)
+    request.urlretrieve(constant.SNAPSHOT_URL, image_name)
 
     img = Image.open(image_name)
 
