@@ -1,7 +1,6 @@
 import os
 import time as timer
 from datetime import datetime, time, date, timedelta
-import cv2
 import glob
 from CamLibrary import *
 
@@ -16,7 +15,7 @@ snapshotEndTime = time(22, 0)
 snapshotInterval = timedelta(minutes=1)
 
 
-def get_processed_cam_image():
+def get_cam_image():
     temp_file_name = tempImageDir + "temp.jpeg"
     img = get_processed_cam_image(temp_file_name)
     return img
@@ -40,7 +39,7 @@ def create_file_name_for_time(time_val):
 
 def capture_and_save_cam_image():
     current_time = datetime.now()
-    img = get_processed_cam_image()
+    img = get_cam_image()
     dir_name = create_path_name_for_time(current_time)
     if not os.path.isdir(dir_name):
         os.mkdir(dir_name)
@@ -68,14 +67,14 @@ def find_next_time_stamp(time_val):
     return next_snapshot_time
 
 
-def make_video_out_of_dir(path_name, file_name):
-    frame_size = (1920, 1080)
-
-    for imgFilename in glob.glob(path_name + "*.jpg"):
-        img = cv2.imread(imgFilename)
-        # TODO
-
-    print("Movie saved as: " + path_name + file_name + ".avi")
+# def make_video_out_of_dir(path_name, file_name):
+#     frame_size = (1920, 1080)
+# 
+#     for imgFilename in glob.glob(path_name + "*.jpg"):
+#         img = cv2.imread(imgFilename)
+#         # TODO
+# 
+#     print("Movie saved as: " + path_name + file_name + ".avi")
 
 
 def main():
