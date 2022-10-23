@@ -1,5 +1,5 @@
 from PIL import Image, ImageFilter
-from flask import request
+from urllib import request
 
 
 CAM_DOMAIN = "http://lago-mio.dyndns.org/"
