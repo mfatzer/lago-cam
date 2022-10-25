@@ -1,9 +1,9 @@
+import camlib
 import os
 import time as timer
 from datetime import datetime, time, date, timedelta
-import cv2
 import glob
-from camlib import *
+
 
 # Ram-disk on "mnt/ramdisk" is needed (1TB)
 
@@ -18,7 +18,7 @@ RECORDING_SNAPSHOT_INTERVAL = timedelta(minutes=1)
 
 
 def get_processed_cam_image():
-    img = get_processed_cam_image(TEMP_IMAGE_NAME)
+    img = camlib.get_processed_cam_image(TEMP_IMAGE_NAME)
     return img
 
 

@@ -1,4 +1,4 @@
-from camlib import *
+import camlib
 from flask import Flask
 from flask import send_file
 from flask_cors import CORS
@@ -13,7 +13,7 @@ cors = CORS(app)
 
 @app.route("/get_image", methods=["GET"])
 def get_cam_image():
-    get_processed_cam_image(IMAGE_NAME)
+    camlib.get_processed_cam_image(IMAGE_NAME)
     return send_file(IMAGE_NAME, mimetype='image/jpeg')
 
 
